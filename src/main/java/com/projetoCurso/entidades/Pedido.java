@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Pedido implements Serializable{
 
@@ -18,9 +20,10 @@ public class Pedido implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant momento;
-
+	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn (name="tb_cliente")
+	@JoinColumn (name="cliente_id")
 	private Usuario cliente;
 
 	public Pedido() {
