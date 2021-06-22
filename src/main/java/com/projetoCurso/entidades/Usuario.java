@@ -1,14 +1,17 @@
 package com.projetoCurso.entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Usuarios implements Serializable {
+public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -19,11 +22,14 @@ public class Usuarios implements Serializable {
 	private String telefone;
 	private String senha;
 	
-	public Usuarios() {
+	@OneToMany (mappedBy = "cliente")
+	private List <Pedido> pedidos = new ArrayList<>();
+
+	public Usuario() {
 		
 	}
 
-	public Usuarios(Long id, String nome, String email, String telefone, String senha) {
+	public Usuario(Long id, String nome, String email, String telefone, String senha) {
 		super();
 		Id = id;
 		this.nome = nome;
@@ -71,6 +77,9 @@ public class Usuarios implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
 
 	@Override
 	public int hashCode() {
@@ -88,7 +97,7 @@ public class Usuarios implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuarios other = (Usuarios) obj;
+		Usuario other = (Usuario) obj;
 		if (Id == null) {
 			if (other.Id != null)
 				return false;
