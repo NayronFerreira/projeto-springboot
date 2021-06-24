@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projetoCurso.entidades.enuns.PedidoStatus;
 
 @Entity
 public class Pedido implements Serializable{
@@ -19,6 +20,9 @@ public class Pedido implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	private Integer pedidoStatus;
+
 	private Instant momento;
 	
 	@JsonIgnore
@@ -30,10 +34,11 @@ public class Pedido implements Serializable{
 
 	}
 
-	public Pedido(Long id, Instant momento, Usuario cliente) {
+	public Pedido(Long id, Instant momento,PedidoStatus pedidoStatus, Usuario cliente) {
 		super();
 		this.id = id;
 		this.momento = momento;
+		this.pedidoStatus = pedidoStatus.getCodigo();
 		this.cliente = cliente;
 	}
 
@@ -59,6 +64,15 @@ public class Pedido implements Serializable{
 
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
+	}
+	
+
+	public PedidoStatus getPedidoStatus() {
+		return PedidoStatus.valueOff(pedidoStatus);
+	}
+
+	public void setPedidoStatus(PedidoStatus pedidoStatus) {
+		this.pedidoStatus = pedidoStatus.getCodigo();
 	}
 
 	@Override

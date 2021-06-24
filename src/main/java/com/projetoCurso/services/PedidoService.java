@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetoCurso.entidades.Pedido;
 import com.projetoCurso.repositories.PedidoRepositoy;
 
@@ -14,7 +13,6 @@ import com.projetoCurso.repositories.PedidoRepositoy;
 public class PedidoService {
 	
 	@Autowired
-	
 	private PedidoRepositoy userRepository;
 	
 	public List <Pedido> findAlll () {
