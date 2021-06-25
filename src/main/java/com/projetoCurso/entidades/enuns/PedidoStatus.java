@@ -2,7 +2,11 @@ package com.projetoCurso.entidades.enuns;
 
 public enum PedidoStatus {
 
-	AGUARDANDO_PAGAMENTO(1), PAGO(2), ENVIADO(3), ENTREGUE(4), CANCELADO(5);
+	AGUARDANDO_PAGAMENTO(1), 
+	PAGO(2), 
+	ENVIADO(3), 
+	ENTREGUE(4), 
+	CANCELADO(5);
 
 	private int codigo;
 

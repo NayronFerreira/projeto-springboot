@@ -1,4 +1,4 @@
-package com.projetoCurso.entidades;
+	package com.projetoCurso.entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
