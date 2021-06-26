@@ -11,28 +11,31 @@ import javax.persistence.Id;
 import javax.persistence.Transient;
 
 @Entity
-public class Categoria implements Serializable{
+public class Produto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	@Transient
-	private Set <Produto> produtos = new HashSet<>();
+	private String descrição;
+	private Double preço;
+	private String imgUrl;
 	
-	public Categoria () {
+	@Transient
+	private Set <Categoria> categorias = new HashSet<>();
+	
+	public Produto () {
 		
 	}
 
-	public Categoria(Long id, String nome) {
+	public Produto(Long id, String nome, String descrição, Double preço, String imgUrl) {
 		super();
 		this.id = id;
 		this.nome = nome;
-	}
-	public Set <Produto> getProdutos(){
-		return produtos;
+		this.descrição = descrição;
+		this.preço = preço;
+		this.imgUrl = imgUrl;
 	}
 
 	public Long getId() {
@@ -51,6 +54,34 @@ public class Categoria implements Serializable{
 		this.nome = nome;
 	}
 
+	public String getDescrição() {
+		return descrição;
+	}
+
+	public void setDescrição(String descrição) {
+		this.descrição = descrição;
+	}
+
+	public Double getPreço() {
+		return preço;
+	}
+
+	public void setPreço(Double preço) {
+		this.preço = preço;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,13 +98,17 @@ public class Categoria implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Produto other = (Produto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Set <Categoria> getCategoria() {
+		return categorias;
 	}
 
 }
