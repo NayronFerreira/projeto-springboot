@@ -2,6 +2,8 @@ package com.projetoCurso.entidades;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetoCurso.entidades.enuns.PedidoStatus;
@@ -29,7 +32,8 @@ public class Pedido implements Serializable{
 	@ManyToOne
 	@JoinColumn (name="cliente_id")
 	private Usuario cliente;
-
+	@OneToMany (mappedBy = "id.pedido")
+	private Set <ItemPedido> itens = new HashSet<>(); 
 	public Pedido() {
 
 	}
@@ -44,6 +48,9 @@ public class Pedido implements Serializable{
 
 	public Long getId() {
 		return id;
+	}
+	public Set <ItemPedido> getItens (){
+		return itens;
 	}
 
 	public void setId(Long id) {

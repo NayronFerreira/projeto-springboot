@@ -9,11 +9,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.projetoCurso.entidades.Categoria;
+import com.projetoCurso.entidades.ItemPedido;
 import com.projetoCurso.entidades.Pedido;
 import com.projetoCurso.entidades.Produto;
 import com.projetoCurso.entidades.Usuario;
 import com.projetoCurso.entidades.enuns.PedidoStatus;
 import com.projetoCurso.repositories.CategoriaRepositoy;
+import com.projetoCurso.repositories.ItemPedidoRepositoy;
 import com.projetoCurso.repositories.PedidoRepositoy;
 import com.projetoCurso.repositories.ProdutoRepositoy;
 import com.projetoCurso.repositories.UsuarioRepositoy;
@@ -30,6 +32,8 @@ public class TesteConfig implements CommandLineRunner{
 	private CategoriaRepositoy categoriaRepository;
 	@Autowired
 	private ProdutoRepositoy produtoRepository;
+	@Autowired
+	private ItemPedidoRepositoy iPrepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -65,9 +69,15 @@ public class TesteConfig implements CommandLineRunner{
 		Pedido p2 = new Pedido(null, Instant.parse("2021-10-18T11:01:02Z"),PedidoStatus.AGUARDANDO_PAGAMENTO,u1);
 		Pedido p3 = new Pedido(null, Instant.parse("2021-10-18T12:01:02Z"),PedidoStatus.CANCELADO, u1);
 		
-		
 		urepository.saveAll(Arrays.asList(u1,u2));
 		pedidoRepository.saveAll(Arrays.asList(p1,p2,p3));
+		
+		ItemPedido iP1 = new ItemPedido(p1, prod1, 1, prod1.getPreço());
+		ItemPedido iP2 = new ItemPedido(p2, prod5, 1, prod5.getPreço());
+		ItemPedido iP3 = new ItemPedido(p3, prod4, 1, prod4.getPreço());
+		
+		iPrepository.saveAll(Arrays.asList(iP1,iP2,iP3));
+	
 	}
 
 }

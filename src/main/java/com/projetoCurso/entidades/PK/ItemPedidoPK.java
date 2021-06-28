@@ -6,6 +6,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projetoCurso.entidades.Pedido;
 import com.projetoCurso.entidades.Produto;
 
@@ -16,6 +17,7 @@ public class ItemPedidoPK implements Serializable{
 	@ManyToOne
 	@JoinColumn (name= "tb_produto")
 	private Produto produto;
+	
 	@ManyToOne
 	@JoinColumn (name = "tb_pedido")
 	private Pedido pedido;
