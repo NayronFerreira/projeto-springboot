@@ -28,7 +28,7 @@ public class Pedido implements Serializable{
 
 	private Instant momento;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn (name="cliente_id")
 	private Usuario cliente;
