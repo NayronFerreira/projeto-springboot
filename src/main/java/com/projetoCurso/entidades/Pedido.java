@@ -50,6 +50,14 @@ public class Pedido implements Serializable{
 		this.pedidoStatus = pedidoStatus.getCodigo();
 		this.cliente = cliente;
 	}
+	
+	public double getTotal () {
+		double soma = 0;
+		for (ItemPedido x: itens) {
+			soma = soma + x.getSubTotal();
+		}
+		return soma;
+	}
 	public Pagamento getPagamento () {
 		return pagamento;
 	}
