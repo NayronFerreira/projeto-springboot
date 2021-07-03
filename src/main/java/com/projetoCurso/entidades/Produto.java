@@ -31,6 +31,7 @@ public class Produto implements Serializable{
 	private Set <Categoria> categorias = new HashSet<>();
 	@OneToMany (mappedBy = "id.produto")
 	private Set <ItemPedido> itens = new HashSet<>();
+	
 	public Produto () {
 		
 	}

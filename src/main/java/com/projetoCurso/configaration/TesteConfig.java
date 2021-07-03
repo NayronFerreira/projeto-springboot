@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.projetoCurso.entidades.Categoria;
 import com.projetoCurso.entidades.ItemPedido;
+import com.projetoCurso.entidades.Pagamento;
 import com.projetoCurso.entidades.Pedido;
 import com.projetoCurso.entidades.Produto;
 import com.projetoCurso.entidades.Usuario;
@@ -67,7 +68,7 @@ public class TesteConfig implements CommandLineRunner{
 		
 		Pedido p1 = new Pedido(null, Instant.parse("2021-10-18T10:01:02Z"),PedidoStatus.AGUARDANDO_PAGAMENTO, u1);
 		Pedido p2 = new Pedido(null, Instant.parse("2021-10-18T11:01:02Z"),PedidoStatus.AGUARDANDO_PAGAMENTO,u1);
-		Pedido p3 = new Pedido(null, Instant.parse("2021-10-18T12:01:02Z"),PedidoStatus.CANCELADO, u1);
+		Pedido p3 = new Pedido(null, Instant.parse("2021-10-18T12:01:02Z"),PedidoStatus.PAGO, u2);
 		
 		urepository.saveAll(Arrays.asList(u1,u2));
 		pedidoRepository.saveAll(Arrays.asList(p1,p2,p3));
@@ -77,6 +78,11 @@ public class TesteConfig implements CommandLineRunner{
 		ItemPedido iP3 = new ItemPedido(p3, prod4, 1, prod4.getPreço());
 		
 		iPrepository.saveAll(Arrays.asList(iP1,iP2,iP3));
+		
+		Pagamento pag1 = new Pagamento(null, Instant.parse("2021-10-18T14:01:02Z"), p3);
+		
+		p3.setPagamento(pag1);
+		pedidoRepository.save(p3);
 	
 	}
 
