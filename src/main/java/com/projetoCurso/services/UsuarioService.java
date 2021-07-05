@@ -28,4 +28,14 @@ public class UsuarioService {
 	public void deletar (Long id) {
 		userRepository.deleteById(id); 		
 	}
+	public Usuario atualizar (Long id, Usuario obj) {
+		Usuario entity = userRepository.getOne(id);
+		atualizarDados(entity, obj);
+		return userRepository.save(entity);
+	}
+	public void atualizarDados (Usuario entity, Usuario obj ) {
+		entity.setNome(obj.getNome());
+		entity.setEmail(obj.getEmail());
+		entity.setTelefone(obj.getTelefone());
+	}
 }
