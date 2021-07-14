@@ -1,0 +1,57 @@
+package com.projetoCurso.resources.exceptions;
+
+import java.io.Serializable;
+import java.time.Instant;
+
+public class StandardError implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	private Instant momento;
+	private Integer status;
+	private String error;
+	private String path;
+	
+	public StandardError () {
+		
+	}
+	public StandardError(Instant momento, Integer status, String error, String path) {
+		super();
+		this.momento = momento;
+		this.status = status;
+		this.error = error;
+		this.path = path;
+	}
+
+	public Instant getMomento() {
+		return momento;
+	}
+
+	public void setMomento(Instant momento) {
+		this.momento = momento;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
+}
