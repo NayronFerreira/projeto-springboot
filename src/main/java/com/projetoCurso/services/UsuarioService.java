@@ -49,7 +49,7 @@ public class UsuarioService {
 		Usuario entity = userRepository.getOne(id);
 		atualizarDados(entity, obj);
 		return userRepository.save(entity);
-		}catch (EntityNotFoundException e) {
+		}catch (EntityNotFoundException  e) {
 			throw new ResourceNotFoundException(id);
 		}
 		
